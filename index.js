@@ -21,14 +21,15 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
     const ticketCollection = client.db("novoair").collection("ticketDetail");
     
-    // add new ticket
-    app.post('/addTicket', (req, res) => {
-        const ticket = req.body;
-        ticketCollection.insertOne(ticket)
-        .then(result => {
-            res.send(result.insertedCount)
-        })
-    })
+    // // add new ticket
+    // app.post('/addTicket', (req, res) => {
+    //     const ticket = req.body;
+    //     ticketCollection.insertMany(ticket)
+    //     .then(result => {
+    //         res.send(result.insertedCount)
+    //     })
+    // })
+
 
     // all ticket List
     app.get('/ticketList', (req, res) => {
@@ -38,14 +39,15 @@ client.connect(err => {
         })
     })
 
-    // // single ticket
-    // app.get('/service/:id', (req, res) => {
-    //     servicesCollection.find({ _id: ObjectId(req.params.id) })
-    //     .toArray((err, documents) => {
-    //         res.send(documents);
-    //     })
-    // })
+    // single ticket
+    app.get('/ticket/:id', (req, res) => {
+        servicesCollection.find({ _id: ObjectId(req.params.id) })
+        .toArray((err, documents) => {
+            res.send(documents);
+        })
+    })
 
+    
      
 
 });
