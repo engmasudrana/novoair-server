@@ -22,6 +22,7 @@ client.connect(err => {
     const ticketCollection = client.db("novoair").collection("ticketDetail");
     
     // // add new ticket
+    
     // app.post('/addTicket', (req, res) => {
     //     const ticket = req.body;
     //     ticketCollection.insertMany(ticket)
@@ -38,17 +39,6 @@ client.connect(err => {
             res.send(documents);
         })
     })
-
-    // single ticket
-    app.get('/ticket/:id', (req, res) => {
-        servicesCollection.find({ _id: ObjectId(req.params.id) })
-        .toArray((err, documents) => {
-            res.send(documents);
-        })
-    })
-
-    
-     
 
 });
 
